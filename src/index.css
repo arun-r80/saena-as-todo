@@ -19,6 +19,10 @@ code {
 }
 
 .profile-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid red 1px;
   float:left;
   width: 10%;
   height: 100%;
@@ -26,9 +30,15 @@ code {
 }
 
 .profile-img{
-  height:40px;
-  width: 40px;
-  margin: 12% auto;
+  
+  height:50px;
+  width: 50px;
+  padding:1px;
   background-color: steelblue;
   border-radius: 50% 50%;
+}
+
+.profile-logo{
+  font-size: 20px;
+  text-align:center;
 }

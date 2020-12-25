@@ -5,9 +5,12 @@ class Header extends React.Component{
     render(){
         return(
         <header class="header-wrapper">Header
-            <section class="profile-wrapper"> 
-                <div class="profile-img">P</div>
-            </section>
+            <div class="profile-wrapper"> 
+
+                <div class="profile-img"> 
+                    <p class="profile-logo"> P</p>
+                </div>
+            </div>
         </header>
         );
     }
