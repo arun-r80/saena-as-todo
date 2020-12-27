@@ -5,29 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color:white;
+  font-size: 1em;
+    text-shadow: 0.5px 0.5px 5px white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.header-wrapper{
+.profile-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  float:left;
+  width: 10%;
+  height: 100%;
+  background-color: rgb(252, 153, 24);
+}
+/* .header-wrapper{
   width: 100%;
   height:80px;
   background-color: rgb(243, 133, 247);
 }
 
-.profile-wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid red 1px;
-  float:left;
-  width: 10%;
-  height: 100%;
-  background-color: skyblue;
-}
+
 
 .profile-img{
   
@@ -40,5 +43,9 @@ code {
 
 .profile-logo{
   font-size: 20px;
-  text-align:center;
-}
+width: 100%;
+padding-top: 11px;
+
+margin: 0px;
+text-align: center;
+} */

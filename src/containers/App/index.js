@@ -8,7 +8,7 @@ class App extends Component {
         <div>
             <Header/>
             Code Goes Here
-            <QRURL url="www.cnn.com"/>
+            
         </div>);
     }
 
