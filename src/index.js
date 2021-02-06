@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App/index';
 import * as serviceWorker from './serviceWorker';
+import {createStore} from 'redux/'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MainNav from './MainNav'
 
 const HeaderWrapper = styled.header`
     width: 100%;
@@ -82,15 +83,12 @@ const MainMenuItems = styled.div`
 const MainMenuSpan = styled.a`
     display:inline-block;
     height:100%;
-    
     padding-top:2em;
     &:hover > div{
         display:block;
         
     }
 `;
-
-
 
 const SubMenuWrapper = styled.div`
     display:none;
@@ -120,8 +118,8 @@ const SubMenuSpan = styled.span`
 `
 
 
-class Header extends React.Component{
-    render(){
+const Header  =() =>{
+    
         return(
         <HeaderWrapper>
             <ProfileWrapper > 
@@ -132,10 +130,10 @@ class Header extends React.Component{
             <ProfileNameWrapper>
                 <ProfileName>Arun Ramamurthy</ProfileName>
             </ProfileNameWrapper>
-            <MainMenuWrapper>
+            <MainNav></MainNav>
+            {/* <MainMenuWrapper>
                 <MainMenu>
                     <MainMenuItems>
-                    
                     <MainMenuSpan>Profile
                         <SubMenuWrapper>
                             <SubMenuItems><SubMenuSpan>Name</SubMenuSpan></SubMenuItems>
@@ -146,9 +144,7 @@ class Header extends React.Component{
                         </SubMenuWrapper>
                         </MainMenuSpan>
                     </MainMenuItems>
-
-                    <MainMenuItems>
-                    
+                    <MainMenuItems>                   
                         <MainMenuSpan>To-Do
                         <SubMenuWrapper>
                             <SubMenuItems><SubMenuSpan>List</SubMenuSpan></SubMenuItems>
@@ -158,10 +154,10 @@ class Header extends React.Component{
                         </MainMenuSpan>
                     </MainMenuItems>
                 </MainMenu>
-            </MainMenuWrapper>
+            </MainMenuWrapper> */}
         </HeaderWrapper>
         );
-    }
+    
 }
 
 export default Header;
