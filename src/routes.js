@@ -3,16 +3,19 @@ import {BrowserRouter,
     Switch,
     Route
 } from 'react-router-dom';
+import Registration from './components/Registration';
 
 const ToDoRouter = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route route='/' component={}></Route>
+                <Route route='/' component={Registration}></Route>
             </Switch>
         </BrowserRouter>
     );
 
 
 }
+
+export default ToDoRouter;  
 

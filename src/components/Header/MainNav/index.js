@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect,useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 
@@ -104,5 +105,9 @@ const MainNav = () => {
 const mapStateToPropos = ({systemReducer:{login}}) => ({
     login
 })
+
+MainNav.propTypes = {
+    login: PropTypes.bool
+}
 
 export default connect(mapStateToPropos,null)(MainNav);

@@ -43,6 +43,7 @@ const ProfileNameWrapper = styled.section`
 
 const ProfileName = styled.div`
     font-size: 1.2em;
+    font-family:'Montserrat';
     width: 80%;
     margin-left:5%;
     text-align: center;
@@ -128,7 +129,7 @@ const Header  =() =>{
                 </ProfileImg>
             </ProfileWrapper>
             <ProfileNameWrapper>
-                <ProfileName>Arun Ramamurthy</ProfileName>
+                <ProfileName>Arun Ramamurthy2</ProfileName>
             </ProfileNameWrapper>
             <MainNav></MainNav>
             {/* <MainMenuWrapper>
