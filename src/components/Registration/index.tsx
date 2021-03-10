@@ -8,7 +8,8 @@ const Registration = (props:any) => {
         apple:"Apple",
         banana: "Banana",
         strawberry: "Strawberry",
-        sapotta: "Sapotta"
+        sapotta: "Sapotta",
+        peach:"peach"
     };
 
 
