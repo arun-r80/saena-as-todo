@@ -9,7 +9,8 @@ const Registration = (props:any) => {
         banana: "Banana",
         strawberry: "Strawberry",
         sapotta: "Sapotta",
-        peach:"peach"
+        peach:"peach",
+        plum:"plum"
     };
 
 
