@@ -17,7 +17,6 @@ position: relative;
 
 &:after{
     position: absolute;
-    
     margin-left: ${props => calculateWidth(props.length)}; //TO-DO
     margin-top: -0px;
     content: '\f0d7';
@@ -52,8 +51,9 @@ const OptionListItem = styled.option`
 
 const UIListItems = styled.div`
 position: absolute;
-background-color: rgb(7, 129, 243); //TO-DO
+//TO-DO
 border-radius:0px 0px 7px 7px;
+border: 2px solid rgb(7, 129, 243);
 top: 98%;
 left: 0;
 right: 0;
@@ -62,17 +62,17 @@ display: ${props => (props.isDropDownOpen == 'false' ? "none":"block")}
 `;
 
 const UIOptionListItem = styled.div`
-color: #ffffff;
+color: rgb(7, 129, 243);
 padding: 8px 16px;
 border: 1px solid transparent;
 border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
 cursor: pointer;
 `;
 const UISelectedItem = styled.div`
-color: #ffffff;
-background-color: rgb(7, 129, 243);
+color: rgb(7, 129, 243);
+// background-color: rgb(7, 129, 243);
 width: 100%;
-padding: 12px 16px;
+padding: 14px 16px;
 box-sizing:border-box;
 cursor: pointer;
 border-radius: 7px;
@@ -90,7 +90,7 @@ const CustomDropDown = function(props:any): JSX.Element{
     let [isDropDownOpen,setDropDownOpenstate] = useState(false);
 
     return (
-        <DropDownWrapper length='700px' color='white' onClick={()=> handleDropDownOpen(isDropDownOpen,setDropDownOpenstate)}>
+        <DropDownWrapper length='900px' color='white' onClick={()=> handleDropDownOpen(isDropDownOpen,setDropDownOpenstate)}>
             <UISelectedItem length='700px'  >{props.list[itemvalueMap[selectedIndex]]}</UISelectedItem>
             <UIListItems isDropDownOpen={isDropDownOpen.toString()} >
                 {itemvalueMap.map((el:string,index:number)=> 
