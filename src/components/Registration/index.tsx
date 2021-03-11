@@ -14,7 +14,7 @@ const Registration = (props:any) => {
         orange:"Orange"
     };
 
-
+// just a comment
 
     return(
         <DropDownWrapper list={dropdownvalues} length='100px' color='red'></DropDownWrapper>
