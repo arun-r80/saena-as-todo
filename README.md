@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `TAG=<<tagname>> npm rc`
+
+Triggers an automated build in Docker Hub. Pushes a new tag with name gives for TAG argument in the script, which triggers 
+automated build rule set in Docker Hub. 
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
