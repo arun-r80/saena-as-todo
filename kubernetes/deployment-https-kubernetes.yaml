@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saena
+spec:
+  selector:
+    matchLabels:
+      app: saena-as-todo
+  template:
+    metadata:
+      labels:
+        app: saena-as-todo
+    spec:
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: saenasecret
+        - name: configmap-volume
+          configMap:
+            name: saenaconfig
+      containers:
+        - name: saena
+          image: arunr80/saena-as-todo
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - mountPath: /etc/nginx/ssl
+              name: secret-volume
+            - mountPath: /etc/nginx/conf.d
+              name: configmap-volume

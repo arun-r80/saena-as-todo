@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saena
+spec:
+  selector:
+    matchLabels:
+      app: saena-as-todo
+  template:
+    metadata:
+      labels:
+        app: saena-as-todo
+    spec:
+      containers:
+        - name: saena
+          image: arunr80/saena-as-todo
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80

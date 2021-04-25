@@ -26,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "rc": "git tag process.argv[2] && git push origin process.argv[2]"
+    "rc": "git tag $TAG && git push origin $TAG" 
+    
   },
   "eslintConfig": {
     "extends": "react-app"
