@@ -4,17 +4,19 @@ import {BrowserRouter,
     Route
 } from 'react-router-dom';
 import Registration from './components/Registration';
+import ToDoNav from './components/ToDoNav';
+import Payment from './components/Payment/index';
 
 const ToDoRouter = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route route='/' component={Registration}></Route>
+                <Route path='/payment'  component={Payment}></Route>
+                <Route path='/register' component={Registration}></Route>
+                <Route path='/'         component={ToDoNav}></Route> 
             </Switch>
         </BrowserRouter>
     );
-
-
 }
 
 export default ToDoRouter;  

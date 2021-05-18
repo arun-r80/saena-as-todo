@@ -5,10 +5,10 @@ import Counter from '../../components/Counter/index.tsx';
 import {Provider} from 'react-redux'; 
 import {createStore} from 'redux';
 import ToDoRouter from '../../routes';
-import rootreducer from '../../redux/rootreducers';
+import rootreducer,{store} from '../../redux/rootreducers';
 
 
-const store = createStore(rootreducer);
+//const store = createStore(rootreducer);
 
 class App extends Component {
     render(){
