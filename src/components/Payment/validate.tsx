@@ -1,0 +1,1 @@
+export const validateReferenceNumber = (props) => props ? undefined:"error";

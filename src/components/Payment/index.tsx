@@ -16,6 +16,7 @@ import {PaymentWrapper,
             PaymentOuter
         }
                          from '../Common';
+import {validateReferenceNumber} from './validate';
 import {ThemeProvider} from '@material-ui/core/styles';
 import formTheme from '../Theme/theme.json';
 
@@ -64,10 +65,11 @@ const PaymentForm = (props) => {
                 <FlxPaymentControl>
                     <Field
                        name="referencenumber"
-                       component="RenderTextField"
+                       component={RenderTextField}
                        label="Reference Number"
+                       validate={validateReferenceNumber}
                        >
-                           <RenderTextField {...props}/>
+                          
                        </Field>
                 </FlxPaymentControl>
             </FlxContainer>
