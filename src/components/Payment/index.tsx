@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm,Form} from 'redux-form';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,26 +7,36 @@ import Col from 'react-bootstrap/Col';
 import MenuItem from '@material-ui/core/MenuItem';
 import {RenderSelect} from './PaymentControls/index'
 import {RenderTextField} from './PaymentControls/PaymentText';
+import RenderButton from './PaymentControls/Submit';
 import {PaymentWrapper,
             PaymentHeader,
             FlxContainer,
             PaymentLabel,
             FlxPaymentLabel,
             FlxPaymentControl,
-            PaymentOuter
+            PaymentOuter,
+            ErrorValidation
         }
                          from '../Common';
-import {validateReferenceNumber} from './validate';
-import {ThemeProvider} from '@material-ui/core/styles';
-import formTheme from '../Theme/theme.json';
+import {validateReferenceNumber,asyncValidate} from './validate';
+import {ReCaptchaRender} from './ReCaptcha'; 
+
 
 // const NewRow = styled.Row`
 //     width: 100%;
 // `;
 
-const PaymentForm = (props) => {
+const handlePaymentSubmit = (values) => console.log("Submitted ", values);
 
-    const {handleSubmit} = props;
+const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any}>) => {
+
+    const {handleSubmit, invalid, anyTouched,change} = props;
+
+    
+
+ 
+
+
 
     return(
         
@@ -35,7 +45,7 @@ const PaymentForm = (props) => {
         <PaymentHeader>
          Payment Details
         </PaymentHeader>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(handlePaymentSubmit)}>
             <Container fluid >
             <Row noGutters >
                 <Col sm lg={4}>
@@ -54,8 +64,8 @@ const PaymentForm = (props) => {
                         component={RenderSelect}
                         label="Claim Type"
                     >
-                        <MenuItem value="Excess Claim">Excess Claim</MenuItem>
-                        <MenuItem value="Policy Payment">Policy Payment</MenuItem>
+                        <option value="Excess Claim">Excess Claim</option>
+                        <option value="Policy Payment">Policy Payment</option>
                     </Field>
                    
                 </FlxPaymentControl>
@@ -73,7 +83,16 @@ const PaymentForm = (props) => {
                        </Field>
                 </FlxPaymentControl>
             </FlxContainer>
-        </form>
+            <Field
+             name="reCaptcha"
+             component={ReCaptchaRender}
+             handleChange={value => {
+                                     change("reCaptcha",value)   
+            }}
+             />
+
+            <RenderButton disabled={(!invalid)} />
+        </Form>
     </PaymentWrapper>
     </PaymentOuter>
     
@@ -82,7 +101,10 @@ const PaymentForm = (props) => {
 }
 
 const Payment = reduxForm({
-    form:'payment'
+    form:'payment',
+    destroyOnUnmount: false
+    
+    
 })(PaymentForm)
 
 export default Payment;

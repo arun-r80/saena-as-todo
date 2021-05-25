@@ -37,10 +37,7 @@ const useStyles =   makeStyles({
 });
 
 const useSelectStyles = makeStyles({
-    input:{
-        padding:'0px',
-        border: '1px solid red'
-        }
+   
 });
 
 
@@ -49,7 +46,8 @@ export const RenderSelect = ({
     input,
     label,
     meta:{touched, error},
-    children
+    children,
+    ...other
 }) => {
 
     const classes = useStyles();
@@ -57,11 +55,13 @@ export const RenderSelect = ({
     
     return(
     <FormControl variant="filled" error={touched && error} classes={{root:classes.root}}>
-        <Select classes={{input: selectClasses.input}}
+        <Select 
             native
             {...input}
         >
+           
             {children}
+            
         </Select>
     </FormControl>
     )

@@ -20,6 +20,7 @@ export const FlxContainer = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
+    height: 56px;
 `;
 
 
@@ -47,10 +48,17 @@ padding-top: 5px;
         
     }
 `
+
+export const ErrorValidation = styled.div`
+    color: red;
+    font: 13px "Arial";
+    padding-top: 2px;
+`
+
 export const FlxPaymentControl = styled(FlxPaymentLabel)`
 @media screen and (min-width: 777px) {
     width: 60%;
-   
+    height: 48px;
 }  
 `;
 
