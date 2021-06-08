@@ -6,18 +6,24 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import ToDoRouter from '../../routes';
 import rootreducer from '../../redux/rootreducers';
+import { configureStore } from '@reduxjs/toolkit';
+import { ThemeProvider } from 'styled-components';
+import Theme from '../../components/Theme/theme.json';
 
 
-const store = createStore(rootreducer);
+const store = configureStore({reducer:rootreducer});
 
 class App extends Component {
+    
     render(){
+        console.log(store)
         return (
         <div>
             <Provider store = {store}>
-                <Header/>
-                Code Goes Here
-                <ToDoRouter/>
+               
+                    <Header/>
+                        Code Goes Here
+                    <ToDoRouter />
                 
             </Provider>
         </div>);
