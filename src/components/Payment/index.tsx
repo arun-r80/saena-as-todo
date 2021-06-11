@@ -15,7 +15,7 @@ import {PaymentWrapper,
             FlxPaymentLabel,
             FlxPaymentControl,
             PaymentOuter,
-            ErrorValidation
+            ReCaptchaWrapper
         }
                          from '../Common';
 import {validateReferenceNumber,asyncValidate} from './validate';
@@ -31,12 +31,6 @@ const handlePaymentSubmit = (values) => console.log("Submitted ", values);
 const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any}>) => {
 
     const {handleSubmit, invalid, anyTouched,change} = props;
-
-    
-
- 
-
-
 
     return(
         
@@ -83,15 +77,16 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
                        </Field>
                 </FlxPaymentControl>
             </FlxContainer>
+            <ReCaptchaWrapper>
             <Field
              name="reCaptcha"
              component={ReCaptchaRender}
-             handleChange={value => {
-                                     change("reCaptcha",value)   
-            }}
+            //  handleChange={value => {
+            //                          change("reCaptcha",value)   
+            //}}
              />
-
-            <RenderButton disabled={(!invalid)} />
+            </ReCaptchaWrapper>
+            <RenderButton disabled={(invalid)} />
         </Form>
     </PaymentWrapper>
     </PaymentOuter>
@@ -103,6 +98,9 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
 const Payment = reduxForm({
     form:'payment',
     destroyOnUnmount: false
+    ,
+    asyncValidate,
+    asyncChangeFields: ['reCaptcha']
     
     
 })(PaymentForm)

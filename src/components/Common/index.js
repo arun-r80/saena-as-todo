@@ -20,7 +20,7 @@ export const FlxContainer = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
-    height: 56px;
+    
 `;
 
 
@@ -53,6 +53,8 @@ export const ErrorValidation = styled.div`
     color: red;
     font: 13px "Arial";
     padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
 `
 
 export const FlxPaymentControl = styled(FlxPaymentLabel)`
@@ -60,6 +62,11 @@ export const FlxPaymentControl = styled(FlxPaymentLabel)`
     width: 60%;
     height: 48px;
 }  
+`;
+
+export const ReCaptchaWrapper = styled.div`
+    margin-top: 8px;
+    margin-bottom: 8px;
 `;
 
 export const PaymentOuter = styled.div`
