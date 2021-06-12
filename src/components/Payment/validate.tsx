@@ -3,8 +3,11 @@ import axios from 'axios';
 
 export const validateReferenceNumber = (props) => props ? undefined:"error";
 
-export const asyncValidate = (values) => {
+export const validateCaptcha = (value) => console.log("In Validate for Captcha");
+
+export const asyncValidate = (values, dispatch, props) => {
     console.log("Values in async validate: ", values);
+    console.log("Values for prop ", props);
     if ( !values.reCaptcha ) {return Promise.reject({reCaptcha: "Select this"})}
 
     console.log("In Async Validate: ", values);

@@ -68,4 +68,17 @@ border: 0;
   padding: 0px !important;
 }
 
+input#cc-numberMuiInputBase-input.MuiOutlinedInput-input {
+  background-image: none;
+  border: 2px solid red ; 
+  background-origin: content-box;
+  background-position: calc(100% + 40px) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#ccNumber-error{
+  background-color: green;
+}
+
 

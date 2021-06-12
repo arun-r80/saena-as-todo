@@ -11,6 +11,13 @@ const style =  {
             'border-radius':'4px',
             'font-size': '12px'
         },
+        '& #cc-number':{
+            'background-image': 'none',
+            'background-origin': 'content-box',
+            'background-position': 'calc(100% + 40px) center',
+            'background-repeat': 'no-repeat',
+            'background-size': 'contain'
+        }
         }};
 
 const errorStyle = {root: {
@@ -38,13 +45,15 @@ const getClasses = (props) => {
 
 export const RenderTextField = ({input,
     label,
+    placeholder,
+    id,
     meta:{touched, error}}) => {
     const classes =  getClasses({touched, error}) ;
 
     
     return(
         <div>
-        <TextField id="outlined-basic" {...input} placeholder="Enter Reference Number" variant="outlined" classes={{root: classes.root}}>
+        <TextField id={id} {...input} placeholder={placeholder} variant="outlined" classes={{root: classes.root}}>
             
         </TextField>
         {error && touched && <ErrorValidation>error</ErrorValidation>}

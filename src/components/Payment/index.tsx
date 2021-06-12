@@ -18,8 +18,9 @@ import {PaymentWrapper,
             ReCaptchaWrapper
         }
                          from '../Common';
-import {validateReferenceNumber,asyncValidate} from './validate';
+import {validateReferenceNumber,asyncValidate,validateCaptcha} from './validate';
 import {ReCaptchaRender} from './ReCaptcha'; 
+import {PayBR} from './PayBR';
 
 
 // const NewRow = styled.Row`
@@ -28,9 +29,9 @@ import {ReCaptchaRender} from './ReCaptcha';
 
 const handlePaymentSubmit = (values) => console.log("Submitted ", values);
 
-const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any}>) => {
+const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object}>) => {
 
-    const {handleSubmit, invalid, anyTouched,change} = props;
+    const {handleSubmit, invalid, anyTouched,change, refCC} = props;
 
     return(
         
@@ -71,6 +72,8 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
                        name="referencenumber"
                        component={RenderTextField}
                        label="Reference Number"
+                       placeholder="Enter Reference Number"
+                       id="referencenumber"
                        validate={validateReferenceNumber}
                        >
                           
@@ -78,14 +81,16 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
                 </FlxPaymentControl>
             </FlxContainer>
             <ReCaptchaWrapper>
-            <Field
-             name="reCaptcha"
-             component={ReCaptchaRender}
-            //  handleChange={value => {
-            //                          change("reCaptcha",value)   
-            //}}
-             />
+                <Field
+                name="reCaptcha"
+                component={ReCaptchaRender}
+                 handleChange={value => {
+                                         change("reCaptcha",value)   
+                }}
+                validate={validateCaptcha}
+                />
             </ReCaptchaWrapper>
+            <PayBR refCC={refCC}/>
             <RenderButton disabled={(invalid)} />
         </Form>
     </PaymentWrapper>
@@ -101,8 +106,17 @@ const Payment = reduxForm({
     ,
     asyncValidate,
     asyncChangeFields: ['reCaptcha']
-    
-    
 })(PaymentForm)
 
-export default Payment;
+const  PaymentRefWrapper = (props) => {
+    const cardNameMessageRef = React.createRef(); 
+    const ccNumberRef = React.createRef();
+    const ccCVVRef= React.createRef();
+
+    
+
+    return (<Payment refCC={{cardNameMessageRef,ccNumberRef,ccCVVRef}}/>)
+}
+
+ export default PaymentRefWrapper;
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
+import { ErrorValidation } from '../../Common';
 
 
 
@@ -11,7 +12,7 @@ export const ReCaptchaRender = (props) => {
                 ref={recaptchaRef}
                 onChange={props.handleChange}
                 sitekey="6LdCXOwaAAAAAOq2JHDUbABlM4nIZqT7U8Onf5Sz"> 
-                {error && <span>{error}</span>}
+                {error && <ErrorValidation>{error}</ErrorValidation>}
                 </ReCAPTCHA>
         )
 

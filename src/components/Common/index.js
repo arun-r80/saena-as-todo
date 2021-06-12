@@ -20,6 +20,8 @@ export const FlxContainer = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 12px;
+    margin-top: 12px;
     
 `;
 
