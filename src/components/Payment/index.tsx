@@ -35,10 +35,21 @@ const handlePaymentSubmit = (values) => {console.log("Submitted ", values)
         const isCreditCardDetailsFilled = false;
         
         const isCardDetailsEmpty = (window.isCardNumberComplete) && window.isCVVComplete && window.isExpiryComplete;
+        console.log("Are credit card vlalues empty ", !isCardDetailsEmpty);
+        const isCreditCardNumberErrored= !(document.getElementById('cc-number-error')?.classList.contains('credit-bambora-error')) &&
+        !(document.getElementById('cc-expiry-error')?.classList.contains('credit-bambora-error')) &&
+        !(document.getElementById('cc-cvv-error')?.classList.contains('credit-bambora-error'));
 
-        const isCreditCardNumberErrored=true;
+        console.log("If any credit card values are errored ", !isCreditCardNumberErrored);
+        console.log((isCardDetailsEmpty && isCreditCardDetailsFilled));
+        if(!(isCardDetailsEmpty && isCreditCardNumberErrored)){
+            console.log("Please enter all Credit card details");
+            document.getElementById('card-error-notification')?.classList.add('credit-bambora-error');
+        } else {
+            document.getElementById('card-error-notification')?.classList.remove('credit-bambora-error');    
+        }
 
-//check if any of credit card values are empty
+ //check if any of credit card values are empty
     }
 ;
 
@@ -93,7 +104,7 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
                        </Field>
                 </FlxPaymentControl>
             </FlxContainer>
-            <ReCaptchaWrapper>
+            {/* <ReCaptchaWrapper>
                 <Field
                 name="reCaptcha"
                 component={ReCaptchaRender}
@@ -102,7 +113,7 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
                 }}
                 validate={validateCaptcha}
                 />
-            </ReCaptchaWrapper>
+            </ReCaptchaWrapper> */}
             <PayBR refCC={refCC}/>
             <RenderButton disabled={(invalid)} />
         </Form>
@@ -116,9 +127,9 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
 const Payment = reduxForm({
     form:'payment',
     destroyOnUnmount: false
-    ,
-    asyncValidate,
-    asyncChangeFields: ['reCaptcha']
+    // ,
+    // asyncValidate,
+    // asyncChangeFields: ['reCaptcha']
 })(PaymentForm)
 
 const  PaymentRefWrapper = (props) => {

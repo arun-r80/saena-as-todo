@@ -35,6 +35,19 @@ const BamboraWrapper = styled.div`
    
 }
 `
+const CardDetailsErrorNotification = styled.div`
+    display:none;    
+    width: 100%;
+    font-size: 12px;
+    color: red;
+    padding: 4px;
+    height: 24px;
+    margin: 4px; 
+    &.credit-bambora-error{
+        display:block;
+    }
+
+`
 const ErrorMessageCC = styled.div`
     color: red;
     width: 100%;
@@ -67,6 +80,7 @@ export const PayBR:typeof PayBRWrapper = (props:any) => {
             <PaymentHeader>
                 Card Details
             </PaymentHeader>
+            <CardDetailsErrorNotification id="card-error-notification">Please enter all card details and click Submit again</CardDetailsErrorNotification>
             <FlxContainer>
                 <FlxPaymentLabel>Creditcard Number</FlxPaymentLabel>
                 {/* <BamboraWrapper id="cc-number"></BamboraWrapper> */}
