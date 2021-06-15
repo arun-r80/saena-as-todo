@@ -1,3 +1,5 @@
+/* global window.isCardNumberComplete */
+
 import React from 'react';
 import {Field, reduxForm,Form} from 'redux-form';
 import styled from 'styled-components';
@@ -22,12 +24,23 @@ import {validateReferenceNumber,asyncValidate,validateCaptcha} from './validate'
 import {ReCaptchaRender} from './ReCaptcha'; 
 import {PayBR} from './PayBR';
 
+declare const window:any;
+
 
 // const NewRow = styled.Row`
 //     width: 100%;
 // `;
 
-const handlePaymentSubmit = (values) => console.log("Submitted ", values);
+const handlePaymentSubmit = (values) => {console.log("Submitted ", values)
+        const isCreditCardDetailsFilled = false;
+        
+        const isCardDetailsEmpty = (window.isCardNumberComplete) && window.isCVVComplete && window.isExpiryComplete;
+
+        const isCreditCardNumberErrored=true;
+
+//check if any of credit card values are empty
+    }
+;
 
 const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object}>) => {
 
@@ -109,13 +122,13 @@ const Payment = reduxForm({
 })(PaymentForm)
 
 const  PaymentRefWrapper = (props) => {
-    const cardNameMessageRef = React.createRef(); 
-    const ccNumberRef = React.createRef();
+    const cardNumberRef = React.createRef(); 
+    const ccExpiryRef = React.createRef();
     const ccCVVRef= React.createRef();
 
     
 
-    return (<Payment refCC={{cardNameMessageRef,ccNumberRef,ccCVVRef}}/>)
+    return (<Payment refCC={{cardNumberRef,ccExpiryRef,ccCVVRef}}/>)
 }
 
  export default PaymentRefWrapper;

@@ -11,13 +11,7 @@ const style =  {
             'border-radius':'4px',
             'font-size': '12px'
         },
-        '& #cc-number':{
-            'background-image': 'none',
-            'background-origin': 'content-box',
-            'background-position': 'calc(100% + 40px) center',
-            'background-repeat': 'no-repeat',
-            'background-size': 'contain'
-        }
+        
         }};
 
 const errorStyle = {root: {

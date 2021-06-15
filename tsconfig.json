@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-, "public/demo.js"  ]
+, "src/components/Payment/PayBR/demo.js"  ]
 }

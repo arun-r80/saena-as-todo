@@ -7,20 +7,60 @@ import {PaymentHeader,
 } from '../../Common';
 import {Field} from 'redux-form';
 import { RenderTextField } from '../PaymentControls/PaymentText';
+import effectBORA from './effectBORA';
+import { useEffect,useState } from 'react';
+
 
 export const PayBRWrapper = styled.div`
     width: 100%;
 `
-
+const BamboraWrapper = styled.div`
+    width: 100%;
+    
+    background-image: none;
+    background-origin: content-box;
+    background-position: calc(99.5% ) center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    &.bambora-base{
+        height: 32px;
+        padding: 4px 4px;
+        border:1px solid #C4C4C4; 
+        border-radius: 4px;      
+    }
+    @media screen and (max-width: 776px){
+    &.bambora-base{
+        border: 2px solid red;
+    }}
+   
+}
+`
 const ErrorMessageCC = styled.div`
     color: red;
     width: 100%;
     margin: 4px 10px;
+    font-size: 12px;
+    display:none;
+    &.credit-bambora-error{
+        display: block;
+    }
 `
 
 export const PayBR:typeof PayBRWrapper = (props:any) => {
 
-    const {refCC:{cardNameMessageRef,ccNumberRef,ccCVVRef}}=props;
+    const {refCC:{cardNumberRef,ccExpiryRef,ccCVVRef}}=props;
+    const [isBamboraLoaded, setIsBamboraloaded] = useState(true);
+
+    useEffect(() => {
+        console.log("In Use Effect");
+        if(isBamboraLoaded){
+        console.log("Loading Bambora")
+        effectBORA();
+        setIsBamboraloaded(false);
+    }   else {
+        console.log("Bambora not loaded")
+    }
+    })
 
     return(
         <PayBRWrapper>
@@ -28,28 +68,19 @@ export const PayBR:typeof PayBRWrapper = (props:any) => {
                 Card Details
             </PaymentHeader>
             <FlxContainer>
-                <FlxPaymentLabel>Cardholder Name</FlxPaymentLabel>
-                <FlxPaymentControl>
-                    <Field
-                        name="CCName"
-                        component={RenderTextField}
-                        label="CCName"
-                        id="cc-name"
-                        placeholder="Enter Credit Card Name"
-                    />                       
-                </FlxPaymentControl>
-                </FlxContainer>
-                <FlxContainer>
                 <FlxPaymentLabel>Creditcard Number</FlxPaymentLabel>
+                {/* <BamboraWrapper id="cc-number"></BamboraWrapper> */}
+
                 <FlxPaymentControl>
                     <Field
-                        id="cc-number"
                         name="CCNumber"
+                        component={BamboraWrapper}
                         label="CCNumber"
+                        id="cc-number"
+                        onChange={() => console.log("Being changed")}
                         placeholder="Enter Credit Card Number"
-                        component={RenderTextField}
-                    />
-                    <ErrorMessageCC id="ccNumber-error" ref={cardNameMessageRef}>Enter Credit Card Name</ErrorMessageCC>
+                    />    
+                     <ErrorMessageCC id="cc-number-error" ref={cardNumberRef}>Enter Credit Card Number</ErrorMessageCC>                   
                 </FlxPaymentControl>
                 </FlxContainer>
                 <FlxContainer>
@@ -60,8 +91,9 @@ export const PayBR:typeof PayBRWrapper = (props:any) => {
                         name="CCExpiry"
                         label="CCExpiry"
                         placeholder="MM/YYYY"
-                        component={RenderTextField}
+                        component={BamboraWrapper}
                         />
+                        <ErrorMessageCC id="cc-expiry-error" ref={ccExpiryRef}>Enter Credit Card Expiry</ErrorMessageCC>
                 </FlxPaymentControl>
                 </FlxContainer>
                 <FlxContainer>
@@ -72,9 +104,10 @@ export const PayBR:typeof PayBRWrapper = (props:any) => {
                         name="CC-CVV"
                         label="CC-CVV"
                         placeholder="Enter CVV"
-                        component={RenderTextField}
+                        component={BamboraWrapper}
                     
                     />
+                    <ErrorMessageCC id="cc-cvv-error" ref={ccCVVRef}>Enter Credit Card Number or CVV</ErrorMessageCC>
                 </FlxPaymentControl>
             </FlxContainer>
         </PayBRWrapper>
