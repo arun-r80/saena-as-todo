@@ -34,6 +34,21 @@ export const PaymentLabel = styled.div`
     margin-left: -15px;
 `;
 
+
+export const CardDetailsErrorNotification = styled.div`
+    display:none;    
+    width: 100%;
+    font-size: 12px;
+    color: red;
+    padding: 4px;
+    height: 24px;
+    margin: 4px; 
+    &.credit-bambora-error{
+        display:block;
+    }
+
+`
+
 export const FlxPaymentLabel = styled.div`
 
 height: 48px;

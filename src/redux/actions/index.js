@@ -1,4 +1,5 @@
 export const UPDATE_LOGIN = 'Update Login Status';
+export const ADD_BAMBORA_RESPONSE = "Add Bambora response"
 
 export const updateLoginStatus = (login) => {
     
@@ -7,4 +8,12 @@ export const updateLoginStatus = (login) => {
          payload: login
     });
 
+}
+
+export const addBamboraResult = (result) => {
+
+    return ({
+        type: ADD_BAMBORA_RESPONSE,
+        payload: result
+    })
 }

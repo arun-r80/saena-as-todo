@@ -17,12 +17,17 @@ import {PaymentWrapper,
             FlxPaymentLabel,
             FlxPaymentControl,
             PaymentOuter,
-            ReCaptchaWrapper
+            ReCaptchaWrapper,
+            CardDetailsErrorNotification
         }
                          from '../Common';
 import {validateReferenceNumber,asyncValidate,validateCaptcha} from './validate';
 import {ReCaptchaRender} from './ReCaptcha'; 
 import {PayBR} from './PayBR';
+import {connect} from 'react-redux';
+import { useState, useEffect } from 'react';
+import effectBORA from './PayBR/effectBORA';
+import {addBamboraResult} from '../../redux/actions';
 
 declare const window:any;
 
@@ -31,31 +36,57 @@ declare const window:any;
 //     width: 100%;
 // `;
 
-const handlePaymentSubmit = (values) => {console.log("Submitted ", values)
-        const isCreditCardDetailsFilled = false;
-        
+
+
+const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object, submitting: boolean,isBamboraCalled: boolean, handleBAmboraSubmission: any, cbBambora:any }>) => {
+
+    const {handleSubmit, invalid, anyTouched,change, refCC, submitting,isBamboraCalled,handleBAmboraSubmission,cbBambora} = props;
+    let bamboraCustomCheckout;
+    
+    const [isBamboraLoaded, setIsBamboraloaded] = useState(true);
+    const [customCheckout, setCustomCheckout] = useState({createOneTimeToken:(id:any, f: any)=> {}});
+
+    useEffect(() => {
+        console.log("In Use Effect");
+        if(isBamboraLoaded){
+        console.log("Loading Bambora")
+        bamboraCustomCheckout = effectBORA();
+        setCustomCheckout(bamboraCustomCheckout);
+        console.log("bambora Custom Checkout from Use Effect ", bamboraCustomCheckout);
+        setIsBamboraloaded(false);
+    }   else {
+        console.log("Bambora not loaded")
+    }
+    })
+    
+    const handlePaymentSubmit = (values, dispatch, props) => {console.log("Submitted ", values)
+        console.log("Props from inside submit function ", props);
+        console.log("bambora Custom Checkout from handle submit ", bamboraCustomCheckout);
+        props.handleBAmboraSubmission(true);
         const isCardDetailsEmpty = (window.isCardNumberComplete) && window.isCVVComplete && window.isExpiryComplete;
         console.log("Are credit card vlalues empty ", !isCardDetailsEmpty);
         const isCreditCardNumberErrored= !(document.getElementById('cc-number-error')?.classList.contains('credit-bambora-error')) &&
         !(document.getElementById('cc-expiry-error')?.classList.contains('credit-bambora-error')) &&
         !(document.getElementById('cc-cvv-error')?.classList.contains('credit-bambora-error'));
-
-        console.log("If any credit card values are errored ", !isCreditCardNumberErrored);
-        console.log((isCardDetailsEmpty && isCreditCardDetailsFilled));
+       
         if(!(isCardDetailsEmpty && isCreditCardNumberErrored)){
             console.log("Please enter all Credit card details");
             document.getElementById('card-error-notification')?.classList.add('credit-bambora-error');
+            return;
         } else {
             document.getElementById('card-error-notification')?.classList.remove('credit-bambora-error');    
         }
 
+        console.log("Call Bambora Service");
+        console.log("Get custom checkout ", customCheckout);
+
+        customCheckout.createOneTimeToken('10e9aa9c-6da2-46c9-948f-efabe3eb2c6b', props.cbBambora);
+        
+
+
  //check if any of credit card values are empty
     }
 ;
-
-const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object}>) => {
-
-    const {handleSubmit, invalid, anyTouched,change, refCC} = props;
 
     return(
         
@@ -115,7 +146,8 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
                 />
             </ReCaptchaWrapper> */}
             <PayBR refCC={refCC}/>
-            <RenderButton disabled={(invalid)} />
+            <CardDetailsErrorNotification id="bambora-error-notification">Error from Bambora</CardDetailsErrorNotification>
+            <RenderButton disabled={!isBamboraCalled &&(invalid || submitting)} />
         </Form>
     </PaymentWrapper>
     </PaymentOuter>
@@ -136,11 +168,20 @@ const  PaymentRefWrapper = (props) => {
     const cardNumberRef = React.createRef(); 
     const ccExpiryRef = React.createRef();
     const ccCVVRef= React.createRef();
+    const {addBamboraResult} = props;
+    const [isBamboraCalled, setIsBamboraCalled] = useState(false);
+    const [isBamboraErrored, setIsBamboraErrored] = useState(false);
 
+    const cbBambora = (response) => {
+        setIsBamboraCalled(false);
+        console.log("Bambora Response: ", response);
+        addBamboraResult(response);
+
+    }
     
 
-    return (<Payment refCC={{cardNumberRef,ccExpiryRef,ccCVVRef}}/>)
+    return (<Payment refCC={{cardNumberRef,ccExpiryRef,ccCVVRef}}  isBamboraCalled={isBamboraCalled} handleBAmboraSubmission={setIsBamboraCalled} cbBambora={cbBambora}/>)
 }
 
- export default PaymentRefWrapper;
+ export default connect(null, {addBamboraResult})(PaymentRefWrapper);
 

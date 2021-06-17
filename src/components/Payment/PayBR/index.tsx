@@ -3,7 +3,8 @@ import React from 'react';
 import {PaymentHeader,
         FlxContainer,
         FlxPaymentLabel,
-        FlxPaymentControl
+        FlxPaymentControl,
+        CardDetailsErrorNotification
 } from '../../Common';
 import {Field} from 'redux-form';
 import { RenderTextField } from '../PaymentControls/PaymentText';
@@ -35,19 +36,7 @@ const BamboraWrapper = styled.div`
    
 }
 `
-const CardDetailsErrorNotification = styled.div`
-    display:none;    
-    width: 100%;
-    font-size: 12px;
-    color: red;
-    padding: 4px;
-    height: 24px;
-    margin: 4px; 
-    &.credit-bambora-error{
-        display:block;
-    }
 
-`
 const ErrorMessageCC = styled.div`
     color: red;
     width: 100%;
@@ -62,18 +51,18 @@ const ErrorMessageCC = styled.div`
 export const PayBR:typeof PayBRWrapper = (props:any) => {
 
     const {refCC:{cardNumberRef,ccExpiryRef,ccCVVRef}}=props;
-    const [isBamboraLoaded, setIsBamboraloaded] = useState(true);
+    // const [isBamboraLoaded, setIsBamboraloaded] = useState(true);
 
-    useEffect(() => {
-        console.log("In Use Effect");
-        if(isBamboraLoaded){
-        console.log("Loading Bambora")
-        effectBORA();
-        setIsBamboraloaded(false);
-    }   else {
-        console.log("Bambora not loaded")
-    }
-    })
+    // useEffect(() => {
+    //     console.log("In Use Effect");
+    //     if(isBamboraLoaded){
+    //     console.log("Loading Bambora")
+    //     effectBORA();
+    //     setIsBamboraloaded(false);
+    // }   else {
+    //     console.log("Bambora not loaded")
+    // }
+    // })
 
     return(
         <PayBRWrapper>

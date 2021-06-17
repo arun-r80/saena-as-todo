@@ -99,9 +99,11 @@ function() {
             self.hideErrorForId('cc-expiry');
           }
   
-        self.setPayButton &&  self.setPayButton(
+       if(
             window.isCardNumberComplete && window.isCVVComplete && window.isExpiryComplete
-          );
+          )  {
+            document.getElementById("card-error-notification").classList.remove("credit-bambora-error")
+          };
         });
   
         customCheckout.on('error', function(event) {
@@ -227,6 +229,7 @@ function() {
     };
   
     customCheckoutController.init();
+    return customCheckout;
   };
 
   export default effectBORA;

@@ -1,4 +1,4 @@
-import {UPDATE_LOGIN} from '../actions';
+import {UPDATE_LOGIN, ADD_BAMBORA_RESPONSE} from '../actions';
 
 export const systemReducer = (state={login: false},action)=> {
    switch(action.type){
@@ -8,6 +8,11 @@ export const systemReducer = (state={login: false},action)=> {
             login: action.payload
          }) 
         break;
+      case ADD_BAMBORA_RESPONSE: 
+       return({
+          ...state, 
+          bb: action.payload
+       })
      default:
          return(state)
    }
