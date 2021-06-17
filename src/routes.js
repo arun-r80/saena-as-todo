@@ -5,7 +5,7 @@ import {BrowserRouter,
 } from 'react-router-dom';
 import Registration from './components/Registration';
 import ToDoNav from './components/ToDoNav';
-import PaymentRefWrapper from './components/Payment/index';
+import PaymentRefWrapper from './components/Payment/PaymentWrapper';
 
 const ToDoRouter = () => {
     return (

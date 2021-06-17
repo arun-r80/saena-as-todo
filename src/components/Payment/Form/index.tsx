@@ -7,9 +7,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';  
 import MenuItem from '@material-ui/core/MenuItem';
-import {RenderSelect} from './PaymentControls/index'
-import {RenderTextField} from './PaymentControls/PaymentText';
-import RenderButton from './PaymentControls/Submit';
+import {RenderSelect} from '../PaymentControls/index'
+import {RenderTextField} from '../PaymentControls/PaymentText';
+import RenderButton from '../PaymentControls/Submit';
 import {PaymentWrapper,
             PaymentHeader,
             FlxContainer,
@@ -20,14 +20,14 @@ import {PaymentWrapper,
             ReCaptchaWrapper,
             CardDetailsErrorNotification
         }
-                         from '../Common';
-import {validateReferenceNumber,asyncValidate,validateCaptcha} from './validate';
-import {ReCaptchaRender} from './ReCaptcha'; 
-import {PayBR} from './PayBR';
+                         from '../../Common';
+import {validateReferenceNumber,asyncValidate,validateCaptcha} from '../validate';
+import {ReCaptchaRender} from '../ReCaptcha'; 
+import {PayBR} from '../PayBR';
 import {connect} from 'react-redux';
 import { useState, useEffect } from 'react';
-import effectBORA from './PayBR/effectBORA';
-import {addBamboraResult} from '../../redux/actions';
+import effectBORA from '../PayBR/effectBORA';
+import {addBamboraResult} from '../../../redux/actions';
 
 declare const window:any;
 
@@ -156,7 +156,7 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
 
 }
 
-const Payment = reduxForm({
+export const Payment = reduxForm({
     form:'payment',
     destroyOnUnmount: false
     // ,
@@ -164,24 +164,4 @@ const Payment = reduxForm({
     // asyncChangeFields: ['reCaptcha']
 })(PaymentForm)
 
-const  PaymentRefWrapper = (props) => {
-    const cardNumberRef = React.createRef(); 
-    const ccExpiryRef = React.createRef();
-    const ccCVVRef= React.createRef();
-    const {addBamboraResult} = props;
-    const [isBamboraCalled, setIsBamboraCalled] = useState(false);
-    const [isBamboraErrored, setIsBamboraErrored] = useState(false);
-
-    const cbBambora = (response) => {
-        setIsBamboraCalled(false);
-        console.log("Bambora Response: ", response);
-        addBamboraResult(response);
-
-    }
-    
-
-    return (<Payment refCC={{cardNumberRef,ccExpiryRef,ccCVVRef}}  isBamboraCalled={isBamboraCalled} handleBAmboraSubmission={setIsBamboraCalled} cbBambora={cbBambora}/>)
-}
-
- export default connect(null, {addBamboraResult})(PaymentRefWrapper);
-
+ 
