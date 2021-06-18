@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Payment} from '../Form';
+import {Payment} from '../PaymentForm';
 import {connect} from 'react-redux';
 import { addBamboraResult } from '../../../redux/actions';
 

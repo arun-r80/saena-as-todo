@@ -19,7 +19,7 @@ export const FlxContainer = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: top;
     margin-bottom: 12px;
     margin-top: 12px;
     
@@ -51,7 +51,7 @@ export const CardDetailsErrorNotification = styled.div`
 
 export const FlxPaymentLabel = styled.div`
 
-height: 48px;
+
 box-sizing: border-box;
 padding-top: 5px;
     @media screen and (max-width: 776px){
@@ -77,7 +77,7 @@ export const ErrorValidation = styled.div`
 export const FlxPaymentControl = styled(FlxPaymentLabel)`
 @media screen and (min-width: 777px) {
     width: 60%;
-    height: 48px;
+   
 }  
 `;
 

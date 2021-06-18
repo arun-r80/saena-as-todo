@@ -28,6 +28,7 @@ import {connect} from 'react-redux';
 import { useState, useEffect } from 'react';
 import effectBORA from '../PayBR/effectBORA';
 import {addBamboraResult} from '../../../redux/actions';
+import PaymentDetails from '../PaymentDetails';
 
 declare const window:any;
 
@@ -92,49 +93,10 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
         
     <PaymentOuter>
     <PaymentWrapper>
-        <PaymentHeader>
-         Payment Details
-        </PaymentHeader>
+       
         <Form onSubmit={handleSubmit(handlePaymentSubmit)}>
-            <Container fluid >
-            <Row noGutters >
-                <Col sm lg={4}>
-                    <PaymentLabel>Type of Payment</PaymentLabel>
-                </Col>
-                <Col sm lg={8}>
-                    <PaymentLabel>Selection Dropdown</PaymentLabel>
-                </Col>
-            </Row>
-            </Container>
-            <FlxContainer>
-                <FlxPaymentLabel htmlFor='TestID'>Claim Type </FlxPaymentLabel>
-                <FlxPaymentControl id="TestID">
-                    <Field
-                        name="claimtype"
-                        component={RenderSelect}
-                        label="Claim Type"
-                    >
-                        <option value="Excess Claim">Excess Claim</option>
-                        <option value="Policy Payment">Policy Payment</option>
-                    </Field>
-                   
-                </FlxPaymentControl>
-            </FlxContainer>
-            <FlxContainer>
-                <FlxPaymentLabel>Reference Number</FlxPaymentLabel>
-                <FlxPaymentControl>
-                    <Field
-                       name="referencenumber"
-                       component={RenderTextField}
-                       label="Reference Number"
-                       placeholder="Enter Reference Number"
-                       id="referencenumber"
-                       validate={validateReferenceNumber}
-                       >
-                          
-                       </Field>
-                </FlxPaymentControl>
-            </FlxContainer>
+
+            <PaymentDetails/>
             {/* <ReCaptchaWrapper>
                 <Field
                 name="reCaptcha"
