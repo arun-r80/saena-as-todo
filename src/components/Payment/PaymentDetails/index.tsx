@@ -36,11 +36,12 @@ const PaymentDetails = (props:any) =>{
                 <FlxPaymentLabel htmlFor='TestID'>Claim Type </FlxPaymentLabel>
                 <FlxPaymentControl id="TestID">
                     <Field
-                        name="claimtype"
+                        name="claim-type"
                         component={RenderSelect}
                         onChange={(e, newvalue) => newvalue  == "Excess Claim" ? setHelpText("Excess Claim"): setHelpText("Policy")}
                         label="Claim Type"
                     >
+                        <option>Select Payment Type</option>
                         <option value="Excess Claim">Excess Claim</option>
                         <option value="Policy Payment">Policy Payment</option>
                     </Field>
@@ -67,7 +68,7 @@ const PaymentDetails = (props:any) =>{
             <FlxPaymentLabel>Claim Amount</FlxPaymentLabel>
                 <FlxPaymentControl>
                     <Field
-                       name="claim Amount"
+                       name="claim-amount"
                        component={RenderTextField}
                        label="Reference Number"
                        placeholder="Enter Claim Amount"

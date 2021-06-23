@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import QRURL from '../../components/qrcode';
-import Header from '../../components/Header';
+import {Header} from '../../components/Common';
 import Counter from '../../components/Counter/index.tsx';
 import {Provider} from 'react-redux'; 
 import {createStore} from 'redux';
@@ -22,7 +22,7 @@ class App extends Component {
             <Provider store = {store}>
                
                     <Header/>
-                        Code Goes Here
+                        
                     <ToDoRouter />
                 
             </Provider>

@@ -17,11 +17,11 @@ const style =  {
 const errorStyle = {root: {
         ...style.root,
         '& .MuiOutlinedInput-notchedOutline':{
-            'border':'3px dotted red'
+            'border':'3px solid red'
         },
         
 '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline':{
-    'border':'3px dotted red'       
+    'border':'3px solid red'       
 
 }
     }}
@@ -50,7 +50,7 @@ export const RenderTextField = ({input,
         <TextField id={id} {...input} placeholder={placeholder} variant="outlined" classes={{root: classes.root}}>
             
         </TextField>
-        {error && touched && <ErrorValidation>error</ErrorValidation>}
+        {error && touched && <ErrorValidation>{error}</ErrorValidation>}
         </div>
     )
 }

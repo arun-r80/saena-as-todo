@@ -1,45 +1,12 @@
-/* global window.isCardNumberComplete */
-
-import React from 'react';
+import React,{useState, useEffect} from 'react';
+import { PageContent,
+            PaymentOuter
+} from '../Common';
+import {PaymentBanner} from './PaymentControls2/PaymentBnr';
 import {Field, reduxForm,Form} from 'redux-form';
-import styled from 'styled-components';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';  
-import MenuItem from '@material-ui/core/MenuItem';
-import {RenderSelect} from '../PaymentControls/index'
-import {RenderTextField} from '../PaymentControls/PaymentText';
-import RenderButton from '../PaymentControls/Submit';
-import {PaymentWrapper,
-            PaymentHeader,
-            FlxContainer,
-            PaymentLabel,
-            FlxPaymentLabel,
-            FlxPaymentControl,
-            PaymentOuter,
-            ReCaptchaWrapper,
-            Header,
-            CardDetailsErrorNotification
-        }
-                         from '../../Common';
-import {validateReferenceNumber,asyncValidate,validateCaptcha,validateForm} from '../validate';
-import {ReCaptchaRender} from '../ReCaptcha'; 
-import {PayBR} from '../PayBR';
-import {connect} from 'react-redux';
-import { useState, useEffect } from 'react';
-import effectBORA from '../PayBR/effectBORA';
-import {addBamboraResult} from '../../../redux/actions';
-import PaymentDetails from '../PaymentDetails';
-import ContactDetails from '../ContactDetails'
-import { Card } from '@material-ui/core';
+import effectBORA from '../Payment/PayBR/effectBORA';
 
 declare const window:any;
-
-
-// const NewRow = styled.Row`
-//     width: 100%;
-// `;
-
 
 
 const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object, submitting: boolean,isBamboraCalled: boolean, handleBAmboraSubmission: any, cbBambora:any }>) => {
@@ -92,47 +59,19 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
     }
 ;
 
-    return(
-     <div>   
-         
 
-        
-    <PaymentOuter>
-    <PaymentWrapper>
+ }
+
+ const Payment2 = (props) => {
+
+   return (
+       <div>
+           <PageContent/>
+           <PaymentBanner/>
+       </div>
        
-        <Form onSubmit={handleSubmit(handlePaymentSubmit)}>
-
-            <PaymentDetails/>
-            <ContactDetails />
-            {/* <ReCaptchaWrapper>
-                <Field
-                name="reCaptcha"
-                component={ReCaptchaRender}
-                 handleChange={value => {
-                                         change("reCaptcha",value)   
-                }}
-                validate={validateCaptcha}
-                />
-            </ReCaptchaWrapper> */}
-            <PayBR refCC={refCC}/>
-            <CardDetailsErrorNotification id="bambora-error-notification">Error from Bambora</CardDetailsErrorNotification>
-            <RenderButton disabled={!isBamboraCalled &&(invalid || submitting)} />
-        </Form>
-    </PaymentWrapper>
-    </PaymentOuter>
-    </div>
-    
-    )
+   )
 
 }
 
-export const Payment = reduxForm({
-    form:'payment',
-    destroyOnUnmount: false, 
-    validate: validateForm
-    // ,
-    // asyncValidate,
-    // asyncChangeFields: ['reCaptcha']
-})(PaymentForm)
-
- 
+export default Payment2;

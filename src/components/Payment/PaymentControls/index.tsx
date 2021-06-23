@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import {makeStyles} from '@material-ui/core/styles';
+import { ErrorValidation } from '../../Common';
 
 
 const useStyles =   makeStyles({
@@ -63,6 +64,7 @@ export const RenderSelect = ({
             {children}
             
         </Select>
+        {touched && error && <ErrorValidation>{error}</ErrorValidation>}
     </FormControl>
     )
 }

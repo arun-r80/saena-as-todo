@@ -1,4 +1,59 @@
+
+
 import styled from 'styled-components';
+// @ts-ignore
+import zurichheader from '../../images/zurich_logo.PNG'
+
+
+
+
+
+const MainHeading = styled.h1`
+color: #2067AE;
+font-size: 25px;
+padding-top: 20px;
+padding-bottom: 16px;
+width: 100%;
+margin-left: 52px;
+
+`
+const MainPara = styled.p`
+font-size: 12px;
+    padding-bottom: 20px;
+    margin-left: 52px;
+    margin-right: 52px;
+`
+const PageContentWrapper = styled.div`
+width: 100%;
+`
+
+export const PageContent = (props) => {
+    return (
+        <PageContentWrapper>
+            <MainHeading>How to make your payment online</MainHeading>
+            <MainPara>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. </MainPara>
+        </PageContentWrapper>
+
+    )
+
+}
+
+const HeaderWrapper = styled.div`
+width: 100%;
+border-bottom: 1px solid grey;
+`
+
+const LOGOIMG = styled.img`
+    margin: 2px 42%;
+`
+export const Header = (props) => {
+
+    return (
+        <HeaderWrapper>
+            <LOGOIMG src={zurichheader} alt="logo"/>
+        </HeaderWrapper>
+    )
+}
 
 export const PaymentWrapper = styled.div`
     width: 99%;
@@ -65,6 +120,8 @@ padding-top: 5px;
         
     }
 `
+
+
 
 export const ErrorValidation = styled.div`
     color: red;
