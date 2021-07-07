@@ -12,7 +12,6 @@ const BannerWrapper = styled.div`
     height: auto;
     background-color: #2268AE;
 `
-
 const CARDLOGO = styled.img`
     margin-left: 42px;
 `
@@ -27,10 +26,6 @@ const BannerSubtitle = styled.div`
  color: white;
  font-weight-bold;
 `
-
-
-
-
 export const PaymentBanner = (props) => {
 
     return(

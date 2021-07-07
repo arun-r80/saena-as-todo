@@ -2,14 +2,16 @@ import React,{useState, useEffect} from 'react';
 import { PageContent,
             PaymentOuter
 } from '../Common';
-import {PaymentBanner} from './PaymentControls2/PaymentBnr';
+import {PaymentBanner} from './PaymentControls/PaymentBnr';
 import {Field, reduxForm,Form} from 'redux-form';
 import effectBORA from '../Payment/PayBR/effectBORA';
+import {validateForm} from '../Payment/validate';
+import SelectPayment from './PaymentControls/SelectPayment'
 
 declare const window:any;
 
 
-const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object, submitting: boolean,isBamboraCalled: boolean, handleBAmboraSubmission: any, cbBambora:any }>) => {
+const PaymentForm2:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:boolean,anyTouched:boolean, change: any,refCC:object, submitting: boolean,isBamboraCalled: boolean, handleBAmboraSubmission: any, cbBambora:any }>) => {
 
     const {handleSubmit, invalid, anyTouched,change, refCC, submitting,isBamboraCalled,handleBAmboraSubmission,cbBambora} = props;
     let bamboraCustomCheckout;
@@ -59,8 +61,23 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
     }
 ;
 
+    return(
+        <PaymentOuter>Form is here
+            <SelectPayment width="60%"/>
+        </PaymentOuter>
+
+    )
 
  }
+
+ const PaymentForm = reduxForm({
+    form:'payment2',
+    destroyOnUnmount: false, 
+    validate: validateForm
+    // ,
+    // asyncValidate,
+    // asyncChangeFields: ['reCaptcha']
+})(PaymentForm2)
 
  const Payment2 = (props) => {
 
@@ -68,6 +85,7 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
        <div>
            <PageContent/>
            <PaymentBanner/>
+           <PaymentForm/>
        </div>
        
    )

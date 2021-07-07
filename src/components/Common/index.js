@@ -144,7 +144,8 @@ export const ReCaptchaWrapper = styled.div`
 `;
 
 export const PaymentOuter = styled.div`
-    width: 100%;
+    width: 80%;
+    margin-left: 10%;
     border: 1px solid red;
     color: black;  
 `;

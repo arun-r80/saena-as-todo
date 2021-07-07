@@ -116,7 +116,7 @@ const PaymentForm:typeof PaymentOuter = (props: Partial<{handleSubmit, invalid:b
             </ReCaptchaWrapper> */}
             <PayBR refCC={refCC}/>
             <CardDetailsErrorNotification id="bambora-error-notification">Error from Bambora</CardDetailsErrorNotification>
-            <RenderButton disabled={!isBamboraCalled &&(invalid || submitting)} />
+            <RenderButton disabled={!isBamboraCalled && (invalid || submitting)} />
         </Form>
     </PaymentWrapper>
     </PaymentOuter>

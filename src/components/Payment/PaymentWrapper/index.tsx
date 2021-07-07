@@ -16,9 +16,7 @@ const  PaymentRefWrapper = (props: Partial<{history: any,addBamboraResult: any} 
     const cbBambora = (response) => {
         setIsBamboraCalled(false);
         console.log("Bambora Response: ", response);
-        addBamboraResult(response);
-        
-
+        addBamboraResult(response); 
     }
     
 

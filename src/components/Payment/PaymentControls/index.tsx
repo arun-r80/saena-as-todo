@@ -5,7 +5,13 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import {makeStyles} from '@material-ui/core/styles';
 import { ErrorValidation } from '../../Common';
+import styled from 'styled-components';
 
+const InfoIcon = styled.div`
+    position: absolute; 
+    margin-left: -30px;
+    color: red;
+`
 
 const useStyles =   makeStyles({
     root:{
@@ -56,6 +62,7 @@ export const RenderSelect = ({
     
     return(
     <FormControl variant="filled" error={touched && error} classes={{root:classes.root}}>
+        <InfoIcon>i</InfoIcon>
         <Select 
             native
             {...input}

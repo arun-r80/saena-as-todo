@@ -33,7 +33,7 @@ const PaymentDetails = (props:any) =>{
         </PaymentHeader>
      
             <FlxContainer>
-                <FlxPaymentLabel htmlFor='TestID'>Claim Type </FlxPaymentLabel>
+                <FlxPaymentLabel htmlFor='TestID'>Claim Type</FlxPaymentLabel>
                 <FlxPaymentControl id="TestID">
                     <Field
                         name="claim-type"
